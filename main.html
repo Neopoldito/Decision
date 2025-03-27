@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta y Respuesta</title>
+    <style>
+        body {
+            background-image: url('tu-imagen-de-fondo.jpg'); /* Reemplaza con la ruta correcta */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 10%;
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button {
+            cursor: pointer;
+            background: white;
+            color: black;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Haz una pregunta</h1>
+        <input type="text" id="question" placeholder="Escribe tu pregunta aquí...">
+        <br>
+        <button onclick="generateResponse()">Enter</button>
+        <p id="result">Esperando...</p>
+    </div>
+
+    <script>
+        function generateResponse() {
+            let question = document.getElementById("question").value;
+            let resultText = document.getElementById("result");
+
+            if (!question.trim()) {
+                alert("Por favor, introduce una pregunta.");
+                return;
+            }
+
+            resultText.textContent = "Dilucidando...";
+            
+            setTimeout(() => {
+                let mean;
+                do {
+                    let numbers = Array.from({ length: 100 }, () => Math.random() * 100);
+                    mean = numbers.reduce((acc, num) => acc + num, 0) / numbers.length;
+                } while (mean >= 40 && mean <= 60);
+
+                let response = mean > 60 ? "SI" : "NO";
+                resultText.textContent = `La respuesta a si "${question}" es: ${response}`;
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
